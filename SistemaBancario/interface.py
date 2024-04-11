@@ -10,7 +10,7 @@ def is_float(valor):
     except:
         return False
 
-def botaoNoticia(valor, opcao, txtQtde):
+def botaoNoticia(valor, app, opcao, txtQtde):
     if not is_float(valor):
         messagebox.showerror("Atenção", "Digite apenas numeros")
     else:
@@ -19,7 +19,7 @@ def botaoNoticia(valor, opcao, txtQtde):
             messagebox.showerror("Atenção", "Apenas numeros positivos")
         else:
             messagebox.showinfo("Aviso", "Operação Efetuada")
-            operacao(valor, opcao)
+            operacao(valor, app, opcao)
             txtQtde.delete(0, END)
 
 def window():
@@ -49,5 +49,5 @@ def window():
     rb_extrato = Radiobutton(app, text="Extrato", value=3, variable=opcao, background="#dde")
     rb_extrato.place(x=15, y=160)
 
-    Button(app, text="Confirma", command=lambda: botaoNoticia(txtQtde.get(), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Confirma", command=lambda: botaoNoticia(txtQtde.get(), app, opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
     app.mainloop()
