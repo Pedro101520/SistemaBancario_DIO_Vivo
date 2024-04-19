@@ -13,7 +13,7 @@ def is_float(valor):
 
 def botaoBanco(valor, opcao, txtQtde):
     if not is_float(valor):
-        messagebox.showerror("Atenção", "Digite apenas numeros")
+        messagebox.showinfo("Atenção", "Digite apenas numeros")
     else:
         valor = float(valor)
         if valor < 1:
