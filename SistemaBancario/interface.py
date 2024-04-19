@@ -25,6 +25,7 @@ def botaoBanco(valor, opcao, txtQtde):
 def botaoExtrato():
     try:
         geraPdf()
+        messagebox.showerror("Aviso", "Extrato gerado, na pasta Sistema_Bancario")
     except PermissionError:
         messagebox.showerror("Aviso", "Feche o extrato aberto, e tente novamente")
 
