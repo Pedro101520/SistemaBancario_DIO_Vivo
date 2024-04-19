@@ -15,7 +15,7 @@ def sacar(valor):
         print(saldo)
     elif valor <= LIMITE:
         if qtdeSaques < 3:
-            saques = f"Saque de: R$ {valor:.0f}"
+            saques = f"Saque de: R$ {valor:.2f}"
             getOperacao(saques)
             saldo -= valor
             messagebox.showinfo("Aviso", "Operação Efetuada")
@@ -30,7 +30,7 @@ def sacar(valor):
 def depositar(valor):
     global saldo 
     depositos = ""
-    depositos = f"Depósito de: R$ {valor:.0f}" 
+    depositos = f"Depósito de: R$ {valor:.2f}" 
     getOperacao(depositos)
     saldo += valor
     messagebox.showinfo("Aviso", "Operação Efetuada")

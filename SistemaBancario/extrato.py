@@ -41,5 +41,5 @@ def geraPdf():
         paragrafos.append(Paragraph(transferencias, estilo_transacoes))
         paragrafos.append(HRFlowable(width="100%", thickness=1, lineCap='round', color=colors.black))
         paragrafos.append(Paragraph("Saldo Final: R${:.2f}".format(saldoFinal), estilo_transacoes))
-        
+        messagebox.showinfo("Aviso", "Extrato gerado, na pasta Sistema_Bancario")
         pdf.build(paragrafos)

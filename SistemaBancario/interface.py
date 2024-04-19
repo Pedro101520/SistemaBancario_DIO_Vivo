@@ -13,10 +13,10 @@ def is_float(valor):
 
 def botaoBanco(valor, opcao, txtQtde):
     if not is_float(valor):
-        messagebox.showinfo("Atenção", "Digite apenas numeros")
+        messagebox.showerror("Atenção", "Digite apenas numeros")
     else:
         valor = float(valor)
-        if valor < 1:
+        if valor < 0:
             messagebox.showerror("Atenção", "Apenas numeros positivos")
         else:
             operacao(valor, opcao)
@@ -25,9 +25,8 @@ def botaoBanco(valor, opcao, txtQtde):
 def botaoExtrato():
     try:
         geraPdf()
-        messagebox.showerror("Aviso", "Extrato gerado, na pasta Sistema_Bancario")
     except PermissionError:
-        messagebox.showerror("Aviso", "Feche o extrato aberto, e tente novamente")
+        messagebox.showerror("Atenção", "Feche o extrato aberto, e tente novamente")
 
 def botaoSair(app): app.destroy()
 
@@ -56,7 +55,7 @@ def window():
     rb_saque = Radiobutton(app, text="Saque", value=2, variable=opcao, background="#dde")
     rb_saque.place(x=15, y=130)
 
-    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get(), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get().replace(',', '.'), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
     Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=130, y=270, width=100, height=20)
     Button(app, text="Sair", command=lambda: botaoSair(app)).place(x=250, y=270, width=100, height=20)
     app.mainloop()
