@@ -17,7 +17,7 @@ Após instruções fornecidas no BootCamp da DIO/Vivo, desenvolvi a minha versã
  - Execute o programa main.exe
  - Faça operações de depósito e de saque
  - O extrato vai ser gerado na pasta SistemaBancario
- - Caso o navegador bloqueie o Download, pode prosseguir, pois o arquivo esta livre de vírus, mas se ficar com alguma dúvida pode entrar em contato comigo ou olhar o código fonte do projeto
+ - Se o navegador bloquear o Download é só liberar a instalação, pois o arquivo não contém vírus. Se tiver alguna dúvida pode entrar em contato (Minhas redes sociais, estão na página inical do meu GitHub), ou verificar o código fonte do projeto
 
 ## Em caso de erro ⚠
 ![Erro](https://github.com/Pedro101520/WebScraping_de_Noticias/assets/105872928/a508c8df-4351-48ea-9690-1cdaae4fc6e7)
