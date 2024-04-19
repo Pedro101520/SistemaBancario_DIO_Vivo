@@ -28,6 +28,8 @@ def botaoExtrato():
     except PermissionError:
         messagebox.showerror("Aviso", "Feche o extrato aberto, e tente novamente")
 
+def botaoSair(app): app.destroy()
+
 def window():
     app = Tk()
     app.title("Sistema Bancário")
@@ -41,7 +43,7 @@ def window():
         anchor = W
     ).place(x=10, y=10, width=200, height=20)
     txtQtde=Entry(app)
-    txtQtde.place(x=225, y=10, width=50, height=20)
+    txtQtde.place(x=100, y=10, width=50, height=20)
 
     opcao = IntVar()
 
@@ -54,5 +56,7 @@ def window():
     rb_saque.place(x=15, y=130)
 
     Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get(), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
-    Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=150, y=270, width=100, height=20)
+    Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=130, y=270, width=100, height=20)
+    Button(app, text="Sair", command=lambda: botaoSair(app)).place(x=250, y=270, width=100, height=20)
     app.mainloop()
+    
