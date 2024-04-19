@@ -1,4 +1,5 @@
 from .operacoes import *
+from .extrato import *
 
 from tkinter import *
 from tkinter import messagebox
@@ -10,7 +11,7 @@ def is_float(valor):
     except:
         return False
 
-def botaoBanco(valor, app, opcao, txtQtde):
+def botaoBanco(valor, opcao, txtQtde):
     if not is_float(valor):
         messagebox.showerror("Atenção", "Digite apenas numeros")
     else:
@@ -20,6 +21,12 @@ def botaoBanco(valor, app, opcao, txtQtde):
         else:
             operacao(valor, opcao)
             txtQtde.delete(0, END)
+    
+def botaoExtrato():
+    try:
+        geraPdf()
+    except PermissionError:
+        messagebox.showerror("Aviso", "Feche o extrato aberto, e tente novamente")
 
 def window():
     app = Tk()
@@ -30,7 +37,7 @@ def window():
         app,
         text = "Digite o valor: ",
         background = "#dde",
-        foreground = "#009",
+        foreground = "#000",
         anchor = W
     ).place(x=10, y=10, width=200, height=20)
     txtQtde=Entry(app)
@@ -46,6 +53,6 @@ def window():
     rb_saque = Radiobutton(app, text="Saque", value=2, variable=opcao, background="#dde")
     rb_saque.place(x=15, y=130)
 
-    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get(), app, opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
-    Button(app, text="Gerar Extrato", command=lambda: botaoBanco(txtQtde.get(), app, opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get(), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=150, y=270, width=100, height=20)
     app.mainloop()
