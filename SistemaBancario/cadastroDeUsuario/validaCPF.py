@@ -1,10 +1,14 @@
+from tkinter import messagebox
+
 def priNum(CPF):
     mult = 1; soma = 0; i = 10
     for digito in CPF[:9]:
         mult = int(digito) * i
         soma += mult
         i -= 1
-    return 11 - (soma % 11)
+    resultado = 11 - (soma % 11)
+    if resultado > 9: resultado = 0
+    return resultado
 
 def ultNum(CPF):
     mult = 1; soma = 0; i = 11
@@ -13,8 +17,25 @@ def ultNum(CPF):
         soma += mult
         i -= 1
     soma += priNum(CPF) * 2
-    return 11 - (soma % 11)
+    resultado = 11 - (soma % 11)
+    if resultado > 9: resultado = 0
+    return resultado
+
+def validaNum(CPF):
+    for digito in CPF:
+        try:
+            int(digito)
+        except:
+            return False
+    return True
 
 def valida(CPF):
-    print(priNum(CPF))
-    print(ultNum(CPF))
+    if validaNum(CPF):
+        cpf = CPF[:-2]
+        cpf += str(priNum(CPF))
+        cpf += str(ultNum(CPF))
+
+        if cpf == CPF and len(CPF) == 11:
+            return True
+    messagebox.showerror("Atenção", "CPF inválido")
+    return False
