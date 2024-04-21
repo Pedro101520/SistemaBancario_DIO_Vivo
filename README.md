@@ -7,8 +7,6 @@ Após instruções fornecidas no BootCamp da DIO/Vivo, desenvolvi a minha versã
 ## Ferramentas 🛠️
  - Pytyhon
  - Tkinter
- - BeatifulSoup
- - urllib
  - reportlab
 
 ## Instruções 📄
