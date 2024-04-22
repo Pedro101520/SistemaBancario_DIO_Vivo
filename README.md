@@ -8,6 +8,7 @@ Após instruções fornecidas no BootCamp da DIO/Vivo, desenvolvi a minha versã
  - Python
  - Tkinter
  - reportlab
+ - API viacep
 
 ## Instruções 📄
  - Primeiro faça o Download do arquivo .exe clicando no botão que esta acima ou na seguinte URL: https://pedrolima.tech/assets/projects/SistemaBancario.rar
