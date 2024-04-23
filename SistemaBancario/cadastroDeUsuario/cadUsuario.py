@@ -86,5 +86,5 @@ def windowCad():
     txtRua=Entry(app)
     txtRua.place(x=70, y=210, width=170, height=20)
 
-    Button(app, text="Cadastrar", command=lambda: armazena(txtNome.get(), txtCPF.get().replace('.', '').replace('-', ''), txtCEP.get(), txtCidade.get(), txtEstado.get(), txtRua.get())).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Cadastrar", command=lambda: armazena(txtNome.get(), txtCPF.get().replace('.', '').replace('-', ''), txtCEP.get(), txtCidade.get(), txtEstado.get(), txtRua.get(), app)).place(x=10, y=270, width=100, height=20)
     app.mainloop()

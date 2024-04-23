@@ -1,6 +1,7 @@
 from .operacoes import *
 from .extrato import *
 from .cadastroDeUsuario.cadUsuario import *
+from .criacaoDeConta.criaConta import *
 
 from tkinter import *
 from tkinter import messagebox
@@ -15,6 +16,8 @@ def is_float(valor):
 def botaoBanco(valor, opcao, txtQtde):
     if opcao == 3:
         windowCad()
+    elif opcao == 4:
+        windowConta()
     elif not is_float(valor):
         messagebox.showerror("Atenção", "Digite apenas numeros")
     else:
@@ -59,6 +62,8 @@ def window():
     rb_saque.place(x=15, y=130)
     rb_novoUsuario = Radiobutton(app, text="Criar Usuário", value=3, variable=opcao, background="#dde")
     rb_novoUsuario.place(x=15, y=160)
+    rb_criaconta = Radiobutton(app, text="Criar Conta", value=4, variable=opcao, background="#dde")
+    rb_criaconta.place(x=15, y=190)
 
     Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get().replace(',', '.'), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
     Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=130, y=270, width=100, height=20)

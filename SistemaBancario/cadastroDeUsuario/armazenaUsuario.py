@@ -13,7 +13,7 @@ def validaCEP(cep):
     return True
      
 
-def armazena(nome, cpf, cep, cidade, estado, rua):
+def armazena(nome, cpf, cep, cidade, estado, rua, app):
 
     if valida(cpf) and validaCEP(cep):
         cliente = {"Nome": nome, "CPF": cpf, "CEP": cep, "Cidade": cidade, "Estado": estado, "Rua": rua}
@@ -28,6 +28,11 @@ def armazena(nome, cpf, cep, cidade, estado, rua):
     else:
         clientes.append(cliente)
     
-    
-    for i in clientes:
-        print(i)
+    # for i in clientes:
+    #     print(i)
+
+    messagebox.showinfo("Atenção", "Cliente cadastrado") 
+    app.destroy()
+
+def getCliente():
+    return clientes
