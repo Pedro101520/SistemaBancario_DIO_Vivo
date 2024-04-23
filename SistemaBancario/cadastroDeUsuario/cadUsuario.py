@@ -11,13 +11,13 @@ def consultaCEP(event, txtEstado, txtCidade, txtRua):
     cep = event.widget.get()
     cep = cep.replace('.', '').replace('-', '').replace(' ', '')
     if len(cep) == 8:
-       acessaCEP(cep)
-       txtEstado.delete(0, END)
-       txtEstado.insert(0, estado())
-       txtCidade.delete(0, END)
-       txtCidade.insert(0, cidade())
-       txtRua.delete(0, END)
-       txtRua.insert(0, rua())
+        acessaCEP(cep)
+        txtEstado.delete(0, END)
+        txtEstado.insert(0, estado())
+        txtCidade.delete(0, END)
+        txtCidade.insert(0, cidade())
+        txtRua.delete(0, END)
+        txtRua.insert(0, rua())
 
 def windowCad():
     app = Tk()
