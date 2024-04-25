@@ -1,4 +1,5 @@
 from .validaCPF import valida
+from .CEP import acessaCEP
 
 from tkinter import messagebox
 
@@ -15,7 +16,10 @@ def validaCEP(cep):
 
 def armazena(nome, cpf, cep, cidade, estado, rua, app):
 
-    if valida(cpf) and validaCEP(cep):
+    if not(acessaCEP(cep)):
+        messagebox.showerror("Atenção", "CEP inválido")
+        
+    if valida(cpf) and acessaCEP(cep):
         cliente = {"Nome": nome, "CPF": cpf, "CEP": cep, "Cidade": cidade, "Estado": estado, "Rua": rua}
     else: return
 
@@ -27,9 +31,6 @@ def armazena(nome, cpf, cep, cidade, estado, rua, app):
         messagebox.showerror("Atenção", "CPF já cadastrado")
     else:
         clientes.append(cliente)
-    
-    # for i in clientes:
-    #     print(i)
 
     messagebox.showinfo("Atenção", "Cliente cadastrado") 
     app.destroy()

@@ -17,11 +17,15 @@ def acessaCEP(cep):
     global uf, localidade, logradouro
     link = f'https://viacep.com.br/ws/{cep}/json/'
     requisicao = requests.get(link)
-    if requisicao.status_code == 200 and isNumber(cep):
-        dic_requisicao = requisicao.json()
-        uf = dic_requisicao['uf']
-        localidade = dic_requisicao['localidade']
-        logradouro = dic_requisicao['logradouro']
+    try:
+        if requisicao.status_code == 200 and isNumber(cep):
+            dic_requisicao = requisicao.json()
+            uf = dic_requisicao['uf']
+            localidade = dic_requisicao['localidade']
+            logradouro = dic_requisicao['logradouro']
+            return True
+    except:
+        return False
 
 def estado():
     global uf

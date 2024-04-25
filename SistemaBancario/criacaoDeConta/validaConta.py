@@ -1,18 +1,26 @@
 from ..cadastroDeUsuario.armazenaUsuario import getCliente
-
 from tkinter import messagebox
 
+global qtdeConta
+qtdeConta = 0
+
 def criaConta(cpf):
+    global qtdeConta
+    
     dadosCliente = getCliente()
     cliente_encontrado = False
+    
     for cliente in dadosCliente:
         if cpf == cliente["CPF"]:
-            cliente_encontrado = True
-            if "Contas" not in cliente:
-                cliente["Contas"] = []
-            nova_conta = {"Agencia": "0001", "Numero": len(cliente["Contas"]) + 1}
-            cliente["Contas"].append(nova_conta)
+            if "Conta" not in cliente:
+                cliente["Conta"] = []
+            qtdeConta += 1
+            nova_conta = {"Agencia": "0001", "numConta": qtdeConta}
+            cliente["Conta"].append(nova_conta)
             print(cliente)
+            messagebox.showinfo("Sucesso", "Conta criada com sucesso")
+            cliente_encontrado = True
             break
+
     if not cliente_encontrado:
         messagebox.showinfo("Atenção", "Usuário não cadastrado")
