@@ -18,5 +18,5 @@ def windowConta():
     txtCPF=Entry(app)
     txtCPF.place(x=140, y=10, width=170, height=20)
 
-    Button(app, text="Criar Conta", command=lambda: criaConta(txtCPF.get())).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Criar Conta", command=lambda: criaConta(txtCPF.get(), app)).place(x=10, y=270, width=100, height=20)
     app.mainloop()

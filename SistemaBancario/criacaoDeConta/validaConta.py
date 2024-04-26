@@ -4,7 +4,7 @@ from tkinter import messagebox
 global qtdeConta
 qtdeConta = 0
 
-def criaConta(cpf):
+def criaConta(cpf, app):
     global qtdeConta
     
     dadosCliente = getCliente()
@@ -24,3 +24,5 @@ def criaConta(cpf):
 
     if not cliente_encontrado:
         messagebox.showinfo("Atenção", "Usuário não cadastrado")
+
+    app.destroy()

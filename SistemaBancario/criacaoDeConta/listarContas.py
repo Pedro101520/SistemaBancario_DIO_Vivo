@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from ..cadastroDeUsuario.armazenaUsuario import getCliente
 
+from tkinter import messagebox
+
 def windowCliente():
     app = Tk()
     app.title("Lista de Contas")
@@ -24,9 +26,13 @@ def windowCliente():
     scrollbar.grid(row=0, column=1, sticky="ns")
 
     dados = getCliente()
-    for cliente in dados:
-        for conta in cliente["Conta"]:
-            componente = [cliente["Nome"], conta["Agencia"], conta["numConta"]]
-            tree.insert("", END, values=componente)
+    try:
+        for cliente in dados:
+            for conta in cliente["Conta"]:
+                componente = [cliente["Nome"], conta["Agencia"], conta["numConta"]]
+                tree.insert("", END, values=componente)
+    except:
+        messagebox.showinfo("Aviso", "Crie uma conta para o usuário cadastrado")
+        app.destroy()
 
     app.mainloop()
