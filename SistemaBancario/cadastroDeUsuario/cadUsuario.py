@@ -2,10 +2,7 @@ from tkinter import *
 
 from .CEP import *
 from .armazenaUsuario import armazena
-from .validaCPF import valida
-
-# def confirma(cpf):
-#     if valida(cpf) == True:
+from .dataNascimento import *
 
 def consultaCEP(event, txtEstado, txtCidade, txtRua):
     cep = event.widget.get()
@@ -22,10 +19,13 @@ def consultaCEP(event, txtEstado, txtCidade, txtRua):
     except:
         return
 
+def ola(event):
+    print("Ola")
+
 def windowCad():
     app = Tk()
     app.title("Cadastro de Usuário")
-    app.geometry("500x300")
+    app.geometry("500x320")
     app.configure(background='#dde')
 
     Label(
@@ -89,5 +89,17 @@ def windowCad():
     txtRua=Entry(app)
     txtRua.place(x=70, y=210, width=170, height=20)
 
-    Button(app, text="Cadastrar", command=lambda: armazena(txtNome.get(), txtCPF.get().replace('.', '').replace('-', ''), txtCEP.get(), txtCidade.get(), txtEstado.get(), txtRua.get(), app)).place(x=10, y=270, width=100, height=20)
+    Label(
+        app,
+        text = "Data Nasc: ",
+        background = "#dde",
+        foreground = "#000",
+        anchor = W
+    ).place(x=10, y=250, width=200, height=20)
+    txtData=Entry(app)
+    txtData.bind("<Key>", lambda event: block_entry(event))
+    txtData.bind("<Button-1>", lambda event: pick_date(event, txtData))
+    txtData.place(x=70, y=250, width=170, height=20)
+
+    Button(app, text="Cadastrar", command=lambda: armazena(txtNome.get(), txtCPF.get().replace('.', '').replace('-', ''), txtCEP.get(), txtCidade.get(), txtEstado.get(), txtRua.get(), app, txtData.get())).place(x=10, y=290, width=100, height=20)
     app.mainloop()

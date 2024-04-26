@@ -29,12 +29,18 @@ def validaNum(CPF):
             return False
     return True
 
+def numIguais(CPF):
+    digitoUm = CPF[0]
+    for digito in CPF:
+        if digito != digitoUm:
+            return False
+    return True
+
 def valida(CPF):
-    if validaNum(CPF):
+    if validaNum(CPF) and not(numIguais(CPF)):
         cpf = CPF[:-2]
         cpf += str(priNum(CPF))
         cpf += str(ultNum(CPF))
-
         if cpf == CPF and len(CPF) == 11:
             return True
     messagebox.showerror("Atenção", "CPF inválido")
