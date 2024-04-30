@@ -1,44 +1,41 @@
 from .extrato import *
-
 from tkinter import messagebox
 
-saldo = 0
-qtdeSaques = 0
+class Operacoes:
 
-def sacar(valor):
-    global saldo, qtdeSaques
-    saques = ""
-    LIMITE = 500
+    def __init__(self) -> None:
+        self.__saldo = 0
+        self.__qtdeSaques = 0
 
-    if valor > saldo:
-        messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
-        print(saldo)
-    elif valor <= LIMITE:
-        if qtdeSaques < 3:
-            saques = f"Saque de: R$ {valor:.2f}"
-            getOperacao(saques)
-            saldo -= valor
-            messagebox.showinfo("Aviso", "Operação Efetuada")
-            getSaldo(saldo)
-            qtdeSaques += 1
+    def sacar(self, valor):
+        saques = ""
+        LIMITE = 500
+
+        if valor > self.__saldo:
+            messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
+        elif valor <= LIMITE:
+            if self.__qtdeSaques < 3:
+                saques = f"Saque de: R$ {valor:.2f}"
+                getOperacao(saques)
+                self.__saldo -= valor
+                messagebox.showinfo("Aviso", "Operação Efetuada")
+                getSaldo(self.__saldo)
+                self.__qtdeSaques += 1
+            else:
+                messagebox.showinfo("Aviso", "Limite diário de saques atingida")
         else:
-            messagebox.showinfo("Aviso", "Limite diário de saques atingida")
-    else:
-        messagebox.showinfo("Aviso", "Limite por saque é de 500")
-    return saldo
+            messagebox.showinfo("Aviso", "Limite por saque é de 500")
 
-def depositar(valor):
-    global saldo 
-    depositos = ""
-    depositos = f"Depósito de: R$ {valor:.2f}" 
-    getOperacao(depositos)
-    saldo += valor
-    messagebox.showinfo("Aviso", "Operação Efetuada")
-    getSaldo(saldo)
-    return saldo
+    def depositar(self, valor):
+        depositos = ""
+        depositos = f"Depósito de: R$ {valor:.2f}" 
+        getOperacao(depositos)
+        self.__saldo += valor
+        messagebox.showinfo("Aviso", "Operação Efetuada")
+        getSaldo(self.__saldo)
 
-def operacao(valor, operacao):
-    if operacao == 1:
-        depositar(valor)
-    elif operacao == 2:
-        sacar(valor)
+    def operacao(self, valor, operacao):
+        if operacao == 1:
+            self.depositar(valor)
+        elif operacao == 2:
+            self.sacar(valor)

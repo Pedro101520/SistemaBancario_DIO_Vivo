@@ -6,6 +6,8 @@ from .criacaoDeConta.listarContas import windowCliente
 from tkinter import *
 from tkinter import messagebox
 
+operacao = Operacoes()
+
 def is_float(valor):
     try:
         float(valor)
@@ -27,7 +29,7 @@ def botaoBanco(valor, opcao, txtQtde):
         if valor < 0:
             messagebox.showerror("Atenção", "Apenas numeros positivos")
         else:
-            operacao(valor, opcao)
+            operacao.operacao(valor, opcao)
             txtQtde.delete(0, END)
     
 def botaoExtrato():
