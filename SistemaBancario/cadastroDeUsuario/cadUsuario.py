@@ -19,9 +19,6 @@ def consultaCEP(event, txtEstado, txtCidade, txtRua):
     except:
         return
 
-def ola(event):
-    print("Ola")
-
 def windowCad():
     app = Tk()
     app.title("Cadastro de Usuário")

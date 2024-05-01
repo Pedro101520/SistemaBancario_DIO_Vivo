@@ -6,8 +6,6 @@ from .criacaoDeConta.listarContas import windowCliente
 from tkinter import *
 from tkinter import messagebox
 
-operacao = Operacoes()
-
 def is_float(valor):
     try:
         float(valor)
@@ -15,7 +13,7 @@ def is_float(valor):
     except:
         return False
 
-def botaoBanco(valor, opcao, txtQtde):
+def botaoBanco(valor, opcao, txtQtde, cpf):
     if opcao == 3:
         windowCad()
     elif opcao == 4:
@@ -29,7 +27,8 @@ def botaoBanco(valor, opcao, txtQtde):
         if valor < 0:
             messagebox.showerror("Atenção", "Apenas numeros positivos")
         else:
-            operacao.operacao(valor, opcao)
+            vincular_cliente(cpf)
+            operacao(valor, opcao)
             txtQtde.delete(0, END)
     
 def botaoExtrato():
@@ -55,6 +54,16 @@ def window():
     txtQtde=Entry(app)
     txtQtde.place(x=100, y=10, width=50, height=20)
 
+    Label(
+        app,
+        text = "Digite o CPF do titular da conta: ",
+        background = "#dde",
+        foreground = "#000",
+        anchor = W
+    ).place(x=170, y=10, width=200, height=20)
+    txtCPF=Entry(app)
+    txtCPF.place(x=350, y=10, width=50, height=20)
+
     opcao = IntVar()
 
     lbl_aviso = Label(app, text="Selecione uma opção", background="#dde")
@@ -71,8 +80,7 @@ def window():
     rb_listarConta = Radiobutton(app, text="Listar Contas", value=5, variable=opcao, background="#dde")
     rb_listarConta.place(x=15, y=220)
 
-    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get().replace(',', '.'), opcao.get(), txtQtde)).place(x=10, y=270, width=100, height=20)
+    Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get().replace(',', '.'), opcao.get(), txtQtde, txtCPF.get())).place(x=10, y=270, width=100, height=20)
     Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=130, y=270, width=100, height=20)
     Button(app, text="Sair", command=lambda: botaoSair(app)).place(x=250, y=270, width=100, height=20)
     app.mainloop()
-    

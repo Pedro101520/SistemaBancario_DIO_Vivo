@@ -43,7 +43,6 @@ def armazena(nome, cpf, cep, cidade, estado, rua, app, data):
         messagebox.showerror("Atenção", "CPF já cadastrado")
     else:
         clientes.append(cliente)
-
     messagebox.showinfo("Atenção", "Cliente cadastrado") 
     print(clientes)
     app.destroy()
