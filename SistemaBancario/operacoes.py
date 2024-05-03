@@ -11,16 +11,6 @@ def obter_cliente(cliente):
     global clientes
     clientes = cliente
 
-# def vincular_cliente(cpf):
-#     global saldo
-#     if cpf == clientes["CPF"]:
-#         conta = clientes["Conta"]
-#         saldo = conta[0]["Saldo"]
-#         print("Cliente com Saldo: ", clientes)
-        # saldo = novo_saldo
-        
-
-
 def sacar(valor):
     global saldo, qtdeSaques
     print("Saldo no saque: ", saldo)
@@ -40,8 +30,10 @@ def sacar(valor):
             qtdeSaques += 1
         else:
             messagebox.showinfo("Aviso", "Limite diário de saques atingida")
+            return 0
     else:
         messagebox.showinfo("Aviso", "Limite por saque é de 500")
+        return 0
     print(saldo)
     return saldo
 
@@ -58,19 +50,19 @@ def depositar(valor):
 
 def operacao(valor, operacao, cpf, conta):
     global saldo, clientes
-    i = 0
+    conta = int(conta)
     for cliente in clientes:
-        print("Teste saldo", cliente["Conta"][1]["Saldo"])
-        if cpf == cliente["CPF"] and cliente["Conta"] == conta:
-            print("Pedro")
-            saldo = cliente["Conta"][1]["Saldo"]
-            if operacao == 1:
-                depositar(valor)
-            elif operacao == 2:
-                sacar(valor)
-            cliente["Conta"][1]["Saldo"] = saldo
-        else:
-            print("CPF ou Conta inválidos")
-    print("Saldo na função operações: ", clientes[1])
+        if cpf == cliente["CPF"]:
+            for numConta in cliente["Conta"]:
+                if conta == numConta["numConta"]:
+                    saldo = numConta["Saldo"]
+                    if operacao == 1:
+                        depositar(valor)
+                    elif operacao == 2:
+                        sacar(valor)
+                    numConta["Saldo"] = saldo
+                else:
+                    print("CPF ou Conta inválidos")
+    print(clientes)
 
 
