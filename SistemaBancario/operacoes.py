@@ -57,14 +57,20 @@ def depositar(valor):
     return saldo
 
 def operacao(valor, operacao, cpf, conta):
-    global saldo
-    for i in clientes["CPF"]:
-        if i == cpf:
-            print("Teste CPF", i)
-            saldo = clientes["Conta"][i]["Saldo"]
+    global saldo, clientes
+    i = 0
+    for cliente in clientes:
+        print("Teste saldo", cliente["Conta"][1]["Saldo"])
+        if cpf == cliente["CPF"] and cliente["Conta"] == conta:
+            print("Pedro")
+            saldo = cliente["Conta"][1]["Saldo"]
             if operacao == 1:
                 depositar(valor)
             elif operacao == 2:
                 sacar(valor)
-        clientes["Conta"][i]["Saldo"] = saldo
-    print("Saldo na função operações: ", clientes)
+            cliente["Conta"][1]["Saldo"] = saldo
+        else:
+            print("CPF ou Conta inválidos")
+    print("Saldo na função operações: ", clientes[1])
+
+
