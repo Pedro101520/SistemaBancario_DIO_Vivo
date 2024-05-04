@@ -31,9 +31,9 @@ def botaoBanco(valor, opcao, txtQtde, cpf, conta):
             operacao(valor, opcao, cpf, conta)
             txtQtde.delete(0, END)
     
-def botaoExtrato():
+def botaoExtrato(conta, cpf):
     try:
-        geraPdf()
+        geraPdf(conta, cpf)
     except PermissionError:
         messagebox.showerror("Atenção", "Feche o extrato aberto, e tente novamente")
 
@@ -89,6 +89,6 @@ def window():
     rb_listarConta.place(x=15, y=220)
 
     Button(app, text="Confirma", command=lambda: botaoBanco(txtQtde.get().replace(',', '.'), opcao.get(), txtQtde, txtCPF.get(), txtConta.get())).place(x=10, y=270, width=100, height=20)
-    Button(app, text="Gerar Extrato", command=lambda: botaoExtrato()).place(x=130, y=270, width=100, height=20)
+    Button(app, text="Gerar Extrato", command=lambda: botaoExtrato(txtConta.get(), txtCPF.get())).place(x=130, y=270, width=100, height=20)
     Button(app, text="Sair", command=lambda: botaoSair(app)).place(x=250, y=270, width=100, height=20)
     app.mainloop()

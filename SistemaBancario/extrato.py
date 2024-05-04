@@ -1,5 +1,7 @@
 from tkinter import messagebox
 
+from .operacoes import get_cliente
+
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, HRFlowable
@@ -7,18 +9,26 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
 transferencias = ""
 saldoFinal = 0
+    # print("Teste dicionario: ", operacoes[0])
 
-def getOperacao(operacao):
+# def getOperacao(operacao):
+#     global transferencias
+#     transferencias += operacao + "<br/><br/>"
+
+# def getSaldo(saldo):
+#     global saldoFinal
+#     saldoFinal = saldo
+
+def geraPdf(conta, cpf):
     global transferencias
-    transferencias += operacao + "<br/><br/>"
+    operacoes = get_cliente()
+    for operacao in operacoes:
+        if cpf == operacao["CPF"]: 
+            for numConta in operacao["Conta"]:
+                if int(conta) == numConta["numConta"]:
+                    transferencias += numConta["Depositos"]
+                    transferencias += numConta["Saques"]
 
-def getSaldo(saldo):
-    global saldoFinal
-    saldoFinal = saldo
-
-def geraPdf():
-    global transferencias
-    
     if transferencias == "":
         messagebox.showinfo("Aviso", "Seu saldo é igual a R$ 0,00 pois não foram feitas movimentações")  
     else:
