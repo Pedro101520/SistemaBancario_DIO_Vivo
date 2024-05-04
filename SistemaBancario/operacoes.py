@@ -5,14 +5,13 @@ from tkinter import messagebox
 global clientes, saldo
 saldo = 0
 clientes = {}
-qtdeSaques = 0
 
 def obter_cliente(cliente):
     global clientes
     clientes = cliente
 
 def sacar(valor):
-    global saldo, qtdeSaques
+    global saldo
     print("Saldo no saque: ", saldo)
     saques = ""
     LIMITE = 500
@@ -21,19 +20,13 @@ def sacar(valor):
         messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
         print(saldo)
     elif valor <= LIMITE:
-        if qtdeSaques < 3:
-            saques = f"Saque de: R$ {valor:.2f}"
-            getOperacao(saques)
-            saldo -= valor
-            messagebox.showinfo("Aviso", "Operação Efetuada")
-            getSaldo(saldo)
-            qtdeSaques += 1
-        else:
-            messagebox.showinfo("Aviso", "Limite diário de saques atingida")
-            return 0
+        saques = f"Saque de: R$ {valor:.2f}"
+        getOperacao(saques)
+        saldo -= valor
+        messagebox.showinfo("Aviso", "Operação Efetuada")
+        getSaldo(saldo)
     else:
-        messagebox.showinfo("Aviso", "Limite por saque é de 500")
-        return 0
+        return messagebox.showinfo("Aviso", "Limite por saque é de 500")
     print(saldo)
     return saldo
 
@@ -59,7 +52,11 @@ def operacao(valor, operacao, cpf, conta):
                     if operacao == 1:
                         depositar(valor)
                     elif operacao == 2:
-                        sacar(valor)
+                        if numConta["Saques"] < 3:
+                            sacar(valor)
+                            numConta["Saques"] += 1
+                        else:
+                            messagebox.showinfo("Aviso", "Limite diário de saques atingido")
                     numConta["Saldo"] = saldo
                 else:
                     print("CPF ou Conta inválidos")

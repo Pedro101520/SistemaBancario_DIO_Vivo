@@ -16,7 +16,7 @@ def criaConta(cpf, app):
             if "Conta" not in cliente:
                 cliente["Conta"] = []
             qtdeConta += 1
-            nova_conta = {"Agencia": "0001", "numConta": qtdeConta, "Saldo": 0}
+            nova_conta = {"Agencia": "0001", "numConta": qtdeConta, "Saldo": 0, "Saques": 0}
             cliente["Conta"].append(nova_conta)
             print(cliente)
             messagebox.showinfo("Sucesso", "Conta criada com sucesso")
