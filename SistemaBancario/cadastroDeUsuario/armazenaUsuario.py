@@ -15,9 +15,12 @@ def validaCEP(cep):
     return True
      
 def validaIdade(data):
-    ano = int(data[6:])
-    ano_atual = datetime.datetime.now().year
-    if (ano_atual - ano) < 18:
+    data_nascimento = datetime.datetime.strptime(data, "%d/%m/%Y")
+    hoje = datetime.datetime.now()
+
+    idade = hoje.year - data_nascimento.year - ((hoje.month, hoje.day) < (data_nascimento.month, data_nascimento.day))
+
+    if idade < 18:
         return False
     return True
 
@@ -41,6 +44,7 @@ def armazena(nome, cpf, cep, cidade, estado, rua, app, data):
             count += 1
     if count >= 1:
         messagebox.showerror("Atenção", "CPF já cadastrado")
+        return
     else:
         clientes.append(cliente)
     messagebox.showinfo("Atenção", "Cliente cadastrado") 

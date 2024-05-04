@@ -8,7 +8,7 @@ def pick_date(event, txtData):
     date_window.grab_set()
     date_window.title("Choose Date of Birth")
     date_window.geometry("250x220+590+370")
-    cal = Calendar(date_window, selectmode="day", date_pattern="mm/dd/yyyy")
+    cal = Calendar(date_window, selectmode="day", date_pattern="dd/mm/yyyy")
     cal.place(x=0, y=0)
 
     submit_btn = Button(date_window, text="Submit", command=lambda: grab_date(txtData))

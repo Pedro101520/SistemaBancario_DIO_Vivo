@@ -7,17 +7,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, HRFlowable
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-transferencias = ""
-saldoFinal = 0
-    # print("Teste dicionario: ", operacoes[0])
-
-# def getOperacao(operacao):
-#     global transferencias
-#     transferencias += operacao + "<br/><br/>"
-
-# def getSaldo(saldo):
-#     global saldoFinal
-#     saldoFinal = saldo
+transferencias = []
 
 def geraPdf(conta, cpf):
     global transferencias
@@ -26,7 +16,9 @@ def geraPdf(conta, cpf):
         if cpf == operacao["CPF"]: 
             for numConta in operacao["Conta"]:
                 if int(conta) == numConta["numConta"]:
+                    saldoFinal = numConta["Saldo"]
                     transferencias += numConta["Depositos"]
+                    transferencias += "<br></br>"
                     transferencias += numConta["Saques"]
 
     if transferencias == "":

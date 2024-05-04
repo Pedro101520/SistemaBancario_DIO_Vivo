@@ -1,5 +1,3 @@
-# from .extrato import *
-
 from tkinter import messagebox
 
 global clientes, saldo
@@ -13,18 +11,16 @@ def obter_cliente(cliente):
 def sacar(valor):
     global saldo
     print("Saldo no saque: ", saldo)
-    saques = ""
     LIMITE = 500
 
     if valor > saldo:
         messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
         print(saldo)
+    elif valor == 0:
+        messagebox.showinfo("Aviso", "Não é possivel sacar igual a 0")
     elif valor <= LIMITE:
-        saques = f"Saque de: R$ {valor:.2f}"
-        # getOperacao(saques)
         saldo -= valor
         messagebox.showinfo("Aviso", "Operação Efetuada")
-        # getSaldo(saldo)
     else:
         return messagebox.showinfo("Aviso", "Limite por saque é de 500")
     print(saldo)
@@ -32,13 +28,10 @@ def sacar(valor):
 
 def depositar(valor):
     global saldo 
-    # depositos = ""
-    # depositos = f"Depósito de: R$ {valor:.2f}" 
-    # getOperacao(depositos)
+    if valor == 0:
+        messagebox.showinfo("Aviso", "Não é possivel depositar valor igual a 0")
     saldo += valor
     messagebox.showinfo("Aviso", "Operação Efetuada")
-    # getSaldo(saldo)
-    print(saldo)
     return saldo
 
 def operacao(valor, operacao, cpf, conta):
@@ -50,7 +43,9 @@ def operacao(valor, operacao, cpf, conta):
                 if conta == numConta["numConta"]:
                     saldo = numConta["Saldo"]
                     if operacao == 1:
-                        numConta["Depositos"] += f"Deposito de: R$ {valor:.2f}"
+                        if not numConta["Depositos"]:
+                            numConta["Depositos"] = []
+                        numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
                         depositar(valor)
                     elif operacao == 2:
                         if numConta["qtdeSaques"] < 3:
@@ -61,7 +56,9 @@ def operacao(valor, operacao, cpf, conta):
                             messagebox.showinfo("Aviso", "Limite diário de saques atingido")
                     numConta["Saldo"] = saldo
                 else:
-                    print("CPF ou Conta inválidos")
+                    messagebox.showinfo("Aviso", "Conta não encontrada. Verifique o CPF do usuário e tente novamente")
+        else:          
+            messagebox.showinfo("Aviso", "CPF não encontrado. Verifique o cadastro e a conta e tente novamente")
     print(clientes)
 
 
