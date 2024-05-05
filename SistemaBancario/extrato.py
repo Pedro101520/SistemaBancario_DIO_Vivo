@@ -7,7 +7,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, HRFlowable
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-transferencias = []
+transferencias = ""
 
 def geraPdf(conta, cpf):
     global transferencias
@@ -17,9 +17,10 @@ def geraPdf(conta, cpf):
             for numConta in operacao["Conta"]:
                 if int(conta) == numConta["numConta"]:
                     saldoFinal = numConta["Saldo"]
-                    transferencias += numConta["Depositos"]
-                    transferencias += "<br></br>"
-                    transferencias += numConta["Saques"]
+                    for deposito in numConta["Depositos"]:
+                        transferencias += str(deposito) + "<br></br>"
+                    for saque in numConta["Saques"]:
+                        transferencias += str(saque) + "<br></br>"
 
     if transferencias == "":
         messagebox.showinfo("Aviso", "Seu saldo é igual a R$ 0,00 pois não foram feitas movimentações")  

@@ -18,7 +18,6 @@ def criaConta(cpf, app):
             qtdeConta += 1
             nova_conta = {"Agencia": "0001", "numConta": qtdeConta, "Saldo": 0, "qtdeSaques": 0, "Depositos": "", "Saques": ""}
             cliente["Conta"].append(nova_conta)
-            print(cliente)
             messagebox.showinfo("Sucesso", "Conta criada com sucesso")
             cliente_encontrado = True
     obter_cliente(dadosCliente)

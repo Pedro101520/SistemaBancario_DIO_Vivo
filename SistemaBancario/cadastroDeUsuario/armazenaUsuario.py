@@ -48,7 +48,6 @@ def armazena(nome, cpf, cep, cidade, estado, rua, app, data):
     else:
         clientes.append(cliente)
     messagebox.showinfo("Atenção", "Cliente cadastrado") 
-    print(clientes)
     app.destroy()
 
 def getCliente():
