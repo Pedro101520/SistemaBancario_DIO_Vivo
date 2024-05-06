@@ -26,13 +26,9 @@ def windowCliente():
     scrollbar.grid(row=0, column=1, sticky="ns")
 
     dados = getCliente()
-    try:
-        for cliente in dados:
-            for conta in cliente["Conta"]:
-                componente = [cliente["Nome"], conta["Agencia"], conta["numConta"]]
-                tree.insert("", END, values=componente)
-    except:
-        messagebox.showinfo("Aviso", "Crie uma conta para o usuário cadastrado")
-        app.destroy()
+    for cliente in dados:
+        for conta in cliente["Conta"]:
+            componente = [cliente["Nome"], conta["Agencia"], conta["numConta"]]
+            tree.insert("", END, values=componente)
 
     app.mainloop()
