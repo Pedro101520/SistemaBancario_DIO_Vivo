@@ -12,7 +12,7 @@ def sacar(valor):
     global saldo
 
     if valor > saldo:
-        messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
+        return messagebox.showinfo("Aviso", "Não foi possível sacar por falta de saldo")
     elif valor == 0:
         messagebox.showinfo("Aviso", "Não é possivel sacar igual a 0")
     else:

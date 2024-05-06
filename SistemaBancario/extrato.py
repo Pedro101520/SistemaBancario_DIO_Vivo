@@ -17,6 +17,7 @@ def geraPdf(conta, cpf):
             for numConta in operacao["Conta"]:
                 if int(conta) == numConta["numConta"]:
                     saldoFinal = numConta["Saldo"]
+                    transferencias = ""
                     for deposito in numConta["Depositos"]:
                         transferencias += str(deposito) + "<br></br>"
                     for saque in numConta["Saques"]:
