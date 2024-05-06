@@ -18,6 +18,20 @@ Após instruções fornecidas no BootCamp da DIO/Vivo, desenvolvi a minha versã
  - O extrato vai ser gerado na pasta SistemaBancario
  - Se o navegador bloquear o Download é só liberar a instalação, pois o arquivo não contém vírus. Se tiver alguna dúvida pode entrar em contato (Minhas redes sociais, estão na página inical do meu GitHub), ou verificar o código fonte do projeto
 
+## Telas
+### Início
+<img width="372" alt="Inicio" src="https://github.com/Pedro101520/SistemaBancario_DIO_Vivo/assets/105872928/fed5e68f-7d57-4008-9740-3b7c13444b58">
+
+### Cadastro de usuários
+<img width="374" alt="Cadastro de usuario" src="https://github.com/Pedro101520/SistemaBancario_DIO_Vivo/assets/105872928/6bbb3bc3-350f-415d-b1f4-6faa996793fc">
+
+### Criação de contas
+<img width="368" alt="criação de conta" src="https://github.com/Pedro101520/SistemaBancario_DIO_Vivo/assets/105872928/5fc7e215-35ba-476e-95ce-53494d263cc6">
+
+### Lista de Contas
+<img width="435" alt="lista de contas" src="https://github.com/Pedro101520/SistemaBancario_DIO_Vivo/assets/105872928/9abde1a7-06f6-4909-a3ce-40e1e7e78597">
+
+
 ## Em caso de erro ⚠
 ![Erro](https://github.com/Pedro101520/WebScraping_de_Noticias/assets/105872928/a508c8df-4351-48ea-9690-1cdaae4fc6e7)
 
