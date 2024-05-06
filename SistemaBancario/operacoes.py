@@ -34,31 +34,30 @@ def operacao(valor, operacao, cpf, conta):
     for cliente in clientes:
         if cpf == cliente["CPF"]:
             for numConta in cliente["Conta"]:
-                if conta == numConta["numConta"]:
-                    saldo = numConta["Saldo"]
-                    if operacao == 1:
-                        if not numConta["Depositos"]:
-                            numConta["Depositos"] = []
-                        numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
-                        depositar(valor)
-                    elif operacao == 2:
-                        if valor < 500:
-                            if numConta["qtdeSaques"] < 3:
-                                if not numConta["Saques"]:
-                                    numConta["Saques"] = []
-                                numConta["Saques"].append(f"Saque de: R$ {valor:.2f}")
-                                sacar(valor)
-                                numConta["qtdeSaques"] += 1
+                try:
+                    if conta == numConta["numConta"]:
+                        saldo = numConta["Saldo"]
+                        if operacao == 1:
+                            if not numConta["Depositos"]:
+                                numConta["Depositos"] = []
+                            numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
+                            depositar(valor)
+                        elif operacao == 2:
+                            if valor < 500:
+                                if numConta["qtdeSaques"] < 3:
+                                    if not numConta["Saques"]:
+                                        numConta["Saques"] = []
+                                    numConta["Saques"].append(f"Saque de: R$ {valor:.2f}")
+                                    sacar(valor)
+                                    numConta["qtdeSaques"] += 1
+                                else:
+                                    messagebox.showinfo("Aviso", "Limite diário de saques atingido")
                             else:
-                                messagebox.showinfo("Aviso", "Limite diário de saques atingido")
-                        else:
-                            messagebox.showinfo("Aviso", "Limite por saque é de 500 reais")  
-                    numConta["Saldo"] = saldo
-                else:
-                    messagebox.showinfo("Aviso", "Conta não encontrada. Verifique o CPF do usuário e tente novamente")
-        else:          
-            messagebox.showinfo("Aviso", "CPF não encontrado. Verifique o cadastro e a conta e tente novamente")
-
+                                messagebox.showinfo("Aviso", "Limite por saque é de 500 reais") 
+                        numConta["Saldo"] = saldo
+                except:
+                    messagebox.showinfo("Aviso", "Confira a conta e o CPF e tente novamente")   
+        print(clientes)
 
 def get_cliente():
     return clientes
