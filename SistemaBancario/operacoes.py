@@ -31,19 +31,19 @@ def depositar(valor):
 def operacao(valor, operacao, cpf, conta):
     global saldo, clientes
     conta = int(conta)
-    for cliente in clientes:
-        if cpf == cliente["CPF"]:
-            for numConta in cliente["Conta"]:
-                try:
+    try:
+        for cliente in clientes:
+            if cpf == cliente["CPF"]:
+                for numConta in cliente["Conta"]:
                     if conta == numConta["numConta"]:
                         saldo = numConta["Saldo"]
                         if operacao == 1:
                             if not numConta["Depositos"]:
                                 numConta["Depositos"] = []
-                            numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
-                            depositar(valor)
+                                numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
+                                depositar(valor)
                         elif operacao == 2:
-                            if valor < 500:
+                            if valor <= 500:
                                 if numConta["qtdeSaques"] < 3:
                                     if not numConta["Saques"]:
                                         numConta["Saques"] = []
@@ -55,10 +55,8 @@ def operacao(valor, operacao, cpf, conta):
                             else:
                                 messagebox.showinfo("Aviso", "Limite por saque é de 500 reais") 
                         numConta["Saldo"] = saldo
-                except:
-                    messagebox.showinfo("Aviso", "Confira a conta e o CPF e tente novamente")   
-        print(clientes)
-
+    except:
+        print("Pedro")            
 def get_cliente():
     return clientes
 

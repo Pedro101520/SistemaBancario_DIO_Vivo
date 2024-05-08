@@ -22,6 +22,12 @@ def geraPdf(conta, cpf):
                         transferencias += str(deposito) + "<br></br>"
                     for saque in numConta["Saques"]:
                         transferencias += str(saque) + "<br></br>"
+                else:
+                    messagebox.showinfo("Aviso", "Verifique a conta e tente novamente")  
+                    return
+        else:
+            messagebox.showinfo("Aviso", "Para gerar o extrato, informe um CPF cadastrado") 
+            return 
 
     if transferencias == "":
         messagebox.showinfo("Aviso", "Seu saldo é igual a R$ 0,00 pois não foram feitas movimentações")  
