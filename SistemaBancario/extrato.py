@@ -8,31 +8,36 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, HRFlowable
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
 transferencias = ""
+qtdeExtrato = 0
 
 def geraPdf(conta, cpf):
-    global transferencias
+    global transferencias, qtdeExtrato
+    cpfEncontrado = False
+    contaEncontrada = False
     operacoes = get_cliente()
     for operacao in operacoes:
+        print(operacao["CPF"])
         if cpf == operacao["CPF"]: 
+            cpfEncontrado = True
             for numConta in operacao["Conta"]:
                 if int(conta) == numConta["numConta"]:
+                    contaEncontrada = True
                     saldoFinal = numConta["Saldo"]
                     transferencias = ""
                     for deposito in numConta["Depositos"]:
                         transferencias += str(deposito) + "<br></br>"
                     for saque in numConta["Saques"]:
                         transferencias += str(saque) + "<br></br>"
-                else:
-                    messagebox.showinfo("Aviso", "Verifique a conta e tente novamente")  
-                    return
-        else:
-            messagebox.showinfo("Aviso", "Para gerar o extrato, informe um CPF cadastrado") 
-            return 
+                    break
+    if not(cpfEncontrado and contaEncontrada):
+        messagebox.showinfo("Aviso", "Verifique a conta e o CPF e tente novamente")  
+        return
 
+    qtdeExtrato += 1
     if transferencias == "":
         messagebox.showinfo("Aviso", "Seu saldo é igual a R$ 0,00 pois não foram feitas movimentações")  
     else:
-        pdf = SimpleDocTemplate("extrato.pdf", pagesize=letter)
+        pdf = SimpleDocTemplate(f"extrato{qtdeExtrato}.pdf", pagesize=letter)
         estilo_transacoes = ParagraphStyle(
             "transacoes",
             parent=getSampleStyleSheet()["Normal"],

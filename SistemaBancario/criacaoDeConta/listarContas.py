@@ -2,8 +2,6 @@ from tkinter import *
 from tkinter import ttk
 from ..cadastroDeUsuario.armazenaUsuario import getCliente
 
-from tkinter import messagebox
-
 def windowCliente():
     app = Tk()
     app.title("Lista de Contas")

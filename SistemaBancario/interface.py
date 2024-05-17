@@ -27,15 +27,14 @@ def botaoBanco(valor, opcao, txtQtde, cpf, conta):
         if valor < 0:
             messagebox.showerror("Atenção", "Apenas numeros positivos")
         else:
-            # vincular_cliente(cpf)
             operacao(valor, opcao, cpf, conta)
             txtQtde.delete(0, END)
     
 def botaoExtrato(conta, cpf):
-    try:
-        geraPdf(conta, cpf)
-    except PermissionError:
-        messagebox.showerror("Atenção", "Feche o extrato aberto, e tente novamente")
+    # try:
+    geraPdf(conta, cpf)
+    # except PermissionError:
+    #     messagebox.showerror("Atenção", "Feche o extrato aberto, e tente novamente")
 
 def botaoSair(app): app.destroy()
 
