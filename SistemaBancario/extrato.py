@@ -16,7 +16,6 @@ def geraPdf(conta, cpf):
     contaEncontrada = False
     operacoes = get_cliente()
     for operacao in operacoes:
-        print(operacao["CPF"])
         if cpf == operacao["CPF"]: 
             cpfEncontrado = True
             for numConta in operacao["Conta"]:

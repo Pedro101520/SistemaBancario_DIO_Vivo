@@ -44,7 +44,7 @@ def operacao(valor, operacao, cpf, conta):
                         if operacao == 1:
                             if not numConta["Depositos"]:
                                 numConta["Depositos"] = []
-                                numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
+                            numConta["Depositos"].append(f"Deposito de: R$ {valor:.2f}")
                             depositar(valor)
                         elif operacao == 2:
                             if valor <= 500:
@@ -62,11 +62,11 @@ def operacao(valor, operacao, cpf, conta):
                             else:
                                 messagebox.showinfo("Aviso", "Limite por saque é de 500 reais") 
                         numConta["Saldo"] = saldo
-            print(cliente)           
         except:
             messagebox.showinfo("Aviso", "Verifique as informações fornecidas e tente novamente") 
     if not(cpfEncontrado or contaEncontrada):
         messagebox.showinfo("Aviso", "Verifique se criou uma conta e se cadastrou um usuário")  
+
 def get_cliente():
     return clientes
 
