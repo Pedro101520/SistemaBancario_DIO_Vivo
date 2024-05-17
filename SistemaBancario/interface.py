@@ -31,10 +31,7 @@ def botaoBanco(valor, opcao, txtQtde, cpf, conta):
             txtQtde.delete(0, END)
     
 def botaoExtrato(conta, cpf):
-    # try:
     geraPdf(conta, cpf)
-    # except PermissionError:
-    #     messagebox.showerror("Atenção", "Feche o extrato aberto, e tente novamente")
 
 def botaoSair(app): app.destroy()
 

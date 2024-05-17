@@ -30,12 +30,16 @@ def depositar(valor):
 
 def operacao(valor, operacao, cpf, conta):
     global saldo, clientes
+    cpfEncontrado = False
+    contaEncontrada = False
     conta = int(conta)
     for cliente in clientes:
         try:
             if cpf == cliente["CPF"]:
+                cpfEncontrado = True
                 for numConta in cliente["Conta"]:
                     if conta == numConta["numConta"] and cpf == cliente["CPF"]:
+                        contaEncontrada = True
                         saldo = numConta["Saldo"]
                         if operacao == 1:
                             if not numConta["Depositos"]:
@@ -47,9 +51,12 @@ def operacao(valor, operacao, cpf, conta):
                                 if numConta["qtdeSaques"] < 3:
                                     if not numConta["Saques"]:
                                         numConta["Saques"] = []
-                                    numConta["Saques"].append(f"Saque de: R$ {valor:.2f}")
-                                    sacar(valor)
-                                    numConta["qtdeSaques"] += 1
+                                    if numConta["Saldo"] > 0: 
+                                        sacar(valor)
+                                        numConta["Saques"].append(f"Saque de: R$ {valor:.2f}")
+                                        numConta["qtdeSaques"] += 1
+                                    else: 
+                                        messagebox.showinfo("Aviso", "Não é possível sacar, pois seu saldo é igual a 0")
                                 else:
                                     messagebox.showinfo("Aviso", "Limite diário de saques atingido")
                             else:
@@ -58,6 +65,8 @@ def operacao(valor, operacao, cpf, conta):
             print(cliente)           
         except:
             messagebox.showinfo("Aviso", "Verifique as informações fornecidas e tente novamente") 
+    if not(cpfEncontrado or contaEncontrada):
+        messagebox.showinfo("Aviso", "Verifique se criou uma conta e se cadastrou um usuário")  
 def get_cliente():
     return clientes
 
